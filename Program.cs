@@ -1,4 +1,6 @@
-﻿Console.WriteLine(Comparador.Comparar("a", "a"));
+﻿using System;
+
+Console.WriteLine(Comparador.Comparar("a", "a"));
 Console.WriteLine(Comparador.Comparar("a", "b"));
 Console.WriteLine(Comparador.Comparar(1, 1));
 Console.WriteLine(Comparador.Comparar(1, 2));
@@ -25,6 +27,7 @@ var teste2 = new Teste()
 };
 
 Console.WriteLine(Comparador.Comparar(teste1, teste2));
+Console.WriteLine(Comparador.Comparar(teste1, teste1));
 
 static class Comparador
 {
@@ -40,10 +43,7 @@ static class Comparador
   public static bool Comparar<T, U>(T param1, U param2) where T : notnull
                                                         where U : notnull
   {
-    string? newParam1 = param1.ToString();
-    string? newParam2 = param2.ToString();
-
-    return newParam1.Equals(newParam2);
+    return param1.Equals(param2);
   }
 }
 
