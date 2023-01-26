@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 
 Console.WriteLine(Comparador.Comparar("a", "a"));
 Console.WriteLine(Comparador.Comparar("a", "b"));
@@ -13,6 +14,7 @@ Console.WriteLine(Comparador.Comparar(2, 2.3));
 Console.WriteLine(Comparador.Comparar(2, 2.0));
 Console.WriteLine(Comparador.Comparar(new List<int>(), new List<string>()));
 Console.WriteLine(Comparador.Comparar(new List<int>(), new List<int>()));
+Console.WriteLine(Comparador.Comparar(new List<int>() { 1, 2 }, new List<int>() { 1, 2 }));
 
 var teste1 = new Teste()
 {
@@ -43,6 +45,14 @@ static class Comparador
   public static bool Comparar<T, U>(T param1, U param2) where T : notnull
                                                         where U : notnull
   {
+    if (param1.GetType() == param2.GetType())
+    {
+      string jsonParam1 = JsonSerializer.Serialize(param1);
+      string jsonParam2 = JsonSerializer.Serialize(param2);
+
+      return jsonParam1.Equals(jsonParam2);
+    }
+
     return param1.Equals(param2);
   }
 }
