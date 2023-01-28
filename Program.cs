@@ -53,7 +53,7 @@ static class Comparador
       return jsonParam1.Equals(jsonParam2);
     }
 
-    return param1.Equals(param2);
+    return param1.ToString().Equals(param2.ToString());
   }
 }
 
